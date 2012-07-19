@@ -5,8 +5,8 @@ set -x
 manage_repo() {
     local label=$1
     git diff
-    #git commit -a -m "[evol] add $label"
-    #git push > /dev/null
+    git commit -a -m "[evol] add $label"
+    git push > /dev/null
 }
 
 create_pxe_config_file() {
