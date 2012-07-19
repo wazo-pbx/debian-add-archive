@@ -1,10 +1,8 @@
 #!/bin/bash
-set -x 
 . xivo_versions_data
 
 manage_repo() {
     local label=$1
-    git diff
     git commit -a -m "[evol] add $label"
     git push > /dev/null
 }
@@ -86,8 +84,11 @@ for branch in dalek gallifrey skaro; do
         debian_version='etch'
         fai="pf-fai-xivo-1.0"
     fi
+    echo "Creating PXE configuration file"
     create_pxe_config_file
+    echo "Creating PXE classes"
     create_debian_installer_classes
+    echo "Creating mirror configuration file"
     create_mirror_distribution_file
 done
 
