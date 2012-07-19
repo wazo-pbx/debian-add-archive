@@ -1,0 +1,108 @@
+#!/bin/bash
+set -x 
+. xivo_versions_data
+
+manage_repo() {
+    local label=$1
+    git diff
+    git commit -a -m "[evol] add $label"
+    git push > /dev/null
+}
+
+create_pxe_config_file() {
+    local project_dir="debian-pxelinux"
+    local archive_config_file="archive/archive-$branch.cfg"
+    cd $project_dir
+    if [ $branch != 'dalek' ]; then
+        echo "menu rows 8" > $archive_config_file
+        for version in $versions; do
+            label="xivo-$branch-$version"
+            class=$label
+                cat >> $archive_config_file << EOF
+label xivo-$branch-$version
+    menu label $label
+    kernel fai-linux-$debian_version
+    append initrd=fai-initrd-$debian_version rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=xivo --
+EOF
+        done
+    fi
+    manage_repo $label
+    cd -
+}
+
+create_debian_installer_classes() {
+    local project_dir="debian-installer"
+    cd $project_dir
+    for version in $versions; do
+        class="$branch-$version"
+        template="$debian_version/classes/$branch-template"
+        directory="$debian_version/classes/xivo-$class"
+        if [ $branch != 'dalek' ]; then
+            if [ ! -d $directory ]; then
+                echo $class does not exist
+                rsync -av $template/ $directory/
+                sed -i "s/pf-fai-template/$fai-$class/" $directory/postinst_script
+                git add $directory
+                manage_repo $directory
+            fi
+        fi
+    done
+    cd -
+}
+
+create_mirror_distribution_file() {
+    local project_dir="puppet"
+    architectures="i386 source"
+    components="main non-free"
+    for version in $versions; do
+        cat >> $distrib_config_file << EOF
+Origin: proformatique.com
+Label: $debian_version-xivo-$branch-$version
+Suite: $debian_version-xivo-$branch-$version
+Codename: $debian_version-xivo-$branch-$version
+#Update: $debian_version-xivo-$branch $debian_version
+Architectures: $architectures
+Components: $components
+Description: Archive $debian_version-xivo-$branch-$version
+SignWith: 9A081A6C
+
+EOF
+    done
+}
+
+distrib_config_file="manage_xivo_archive/distributions"
+rm $distrib_config_file
+
+for branch in dalek gallifrey skaro; do
+    if [ $branch = 'skaro' ]; then
+        versions="$skaro_versions"
+        debian_version='squeeze'
+        fai="pf-fai-xivo-1.2"
+    elif [ $branch = 'gallifrey' ]; then
+        versions="$gallifrey_versions"
+        debian_version='lenny'
+        fai="pf-fai-xivo-1.1"
+    elif [ $branch = 'dalek' ]; then
+        versions="$dalek_versions"
+        debian_version='etch'
+        fai="pf-fai-xivo-1.0"
+    fi
+    create_pxe_config_file
+    create_debian_installer_classes
+    create_mirror_distribution_file
+done
+
+cat >> $distrib_config_file << EOF
+Origin: avencall.com
+Label: squeeze-dahdi-linux-2.6.0
+Suite: squeeze-dahdi-linux-2.6.0
+Codename: squeeze-dahdi-linux-2.6.0
+Architectures: i386 source
+Components: main
+Description: Archive squeeze-dahdi-linux-2.6.0
+SignWith: 9A081A6C
+EOF
+
+cd puppet
+manage_repo "[evol] add new xivo mirror"
+cd -
