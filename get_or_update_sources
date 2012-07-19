@@ -1,14 +1,19 @@
 #!/bin/bash
 repositories="debian-installer debian-pxelinux manage_xivo_archive"
-
+url="ssh://gitosis@git.xivo.fr/official"
 if [ ! -d 'sources' ]; then
     mkdir sources
 fi
 
 get_repo() {
     if [ ! -d "$repository" ]; then
+        git ls-remote $url/$repository &> /dev/null
+        if [ $? -ne 0 ]; then
+            "You cannot clone repository, abording"
+            exit 1
+        fi
         echo "get $repository"
-        git clone ssh://gitosis@git.xivo.fr/official/$repository
+        git clone $url/$repository
     else
         cd $repository && git pull
         cd -
