@@ -3,14 +3,14 @@
 
 manage_repo() {
     local label=$1
-    git commit -a -m "[evol] add $label"
+    git commit -a -m "[evol] add $label" > /dev/null
     git push > /dev/null
 }
 
 create_pxe_config_file() {
     local project_dir="sources/debian-pxelinux"
     local archive_config_file="archive/archive-$branch.cfg"
-    cd $project_dir
+    cd $project_dir > /dev/null
     if [ $branch != 'dalek' ]; then
         echo "menu rows 8" > $archive_config_file
         for version in $versions; do
@@ -25,12 +25,12 @@ EOF
         done
     fi
     manage_repo $label
-    cd -
+    cd - > /dev/null
 }
 
 create_debian_installer_classes() {
     local project_dir="sources/debian-installer"
-    cd $project_dir
+    cd $project_dir > /dev/null
     for version in $versions; do
         class="$branch-$version"
         template="$debian_version/classes/$branch-template"
@@ -40,12 +40,12 @@ create_debian_installer_classes() {
                 echo $class does not exist
                 rsync -av $template/ $directory/
                 sed -i "s/pf-fai-template/$fai-$class/" $directory/postinst_script
-                git add $directory
+                git add $directory > /dev/null
                 manage_repo $directory
             fi
         fi
     done
-    cd -
+    cd - > /dev/null
 }
 
 create_mirror_distribution_file() {
@@ -84,6 +84,7 @@ for branch in dalek gallifrey skaro; do
         debian_version='etch'
         fai="pf-fai-xivo-1.0"
     fi
+    echo "Creating $branch data"
     echo "Creating PXE configuration file"
     create_pxe_config_file
     echo "Creating PXE classes"
@@ -103,6 +104,6 @@ Description: Archive squeeze-dahdi-linux-2.6.0
 SignWith: 9A081A6C
 EOF
 
-cd sources/manage_xivo_archive
+cd sources/manage_xivo_archive > /dev/null
 manage_repo "[evol] add new xivo mirror"
-cd -
+cd - > /dev/null
