@@ -1,0 +1,23 @@
+#!/bin/bash
+repositories="debian-installer debian-pxelinux manage_xivo_archive"
+
+if [ ! -d 'sources' ]; then
+    mkdir sources
+fi
+
+get_repo() {
+    if [ ! -d "$repository" ]; then
+        echo "get $repository"
+        git clone ssh://gitosis@git.xivo.fr/official/$repository
+    else
+        cd $repository && git pull
+        cd -
+    fi
+}
+
+echo sources >> .git/info/exclude
+
+cd sources
+for repository in $repositories; do
+    get_repo $repository
+done
