@@ -39,7 +39,7 @@ create_debian_installer_classes() {
             if [ ! -d $directory ]; then
                 echo $class does not exist
                 rsync -av $template/ $directory/
-                sed -i "s/pf-fai-template/$fai-$class/" $directory/postinst_script
+                sed -i "s/xivo-fai-template/xivo-fai-$class/" $directory/postinst_script
                 git add $directory > /dev/null
                 manage_repo $directory
             fi
