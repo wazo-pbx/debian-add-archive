@@ -1,6 +1,8 @@
 #!/bin/bash
 . xivo_versions_data
 
+gpg_signing_key=DFB0B268
+
 manage_repo() {
     local label=$1
     git commit -a -m "[evol] add $label" > /dev/null
@@ -61,7 +63,7 @@ Codename: $debian_version-xivo-$branch-$version
 Architectures: $architectures
 Components: $components
 Description: Archive $debian_version-xivo-$branch-$version
-SignWith: 9A081A6C
+SignWith: $gpg_signing_key
 
 EOF
     done
@@ -101,7 +103,7 @@ Codename: squeeze-dahdi-linux-2.6.0
 Architectures: i386 source
 Components: main
 Description: Archive squeeze-dahdi-linux-2.6.0
-SignWith: 9A081A6C
+SignWith: $gpg_signing_key
 EOF
 
 cd sources/manage_xivo_archive > /dev/null
