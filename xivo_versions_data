@@ -1,3 +1,6 @@
+xivo_versions=" \
+               13.25
+              "
 skaro_versions="     \
                 13.24 \
                 13.23 \
