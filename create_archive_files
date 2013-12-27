@@ -2,110 +2,77 @@
 . xivo_versions_data
 
 gpg_signing_key=DFB0B268
+debian_version=wheezy
 
-manage_repo() {
-    local label=$1
-    git commit -a -m "[evol] add $label" > /dev/null
+commit() {
+    local message=$1
+    git commit -a -m "$message" > /dev/null
     git push > /dev/null
 }
 
 create_pxe_config_file() {
-    local project_dir="sources/debian-pxelinux"
-    local archive_config_file="archive/archive-$branch.cfg"
-    cd $project_dir > /dev/null
-    if [ $branch != 'dalek' ]; then
-        echo "menu rows 8" > $archive_config_file
-        for version in $versions; do
-            label="xivo-$branch-$version"
-            class=$label
-                cat >> $archive_config_file << EOF
-label xivo-$branch-$version
+    cd "sources/debian-pxelinux" > /dev/null
+    local archive_config_file="archive/archive-xivo.cfg"
+    echo "menu rows 8" > $archive_config_file
+    for version in $xivo_versions; do
+        label="xivo-$version"
+        class=$label
+        cat >> $archive_config_file << EOF
+label $label
     menu label $label
     kernel fai-linux-$debian_version
     append initrd=fai-initrd-$debian_version rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=xivo --
 EOF
-        done
-    fi
-    manage_repo $label
+    done
+    commit "add archive $label"
     cd - > /dev/null
 }
 
 create_debian_installer_classes() {
-    local project_dir="sources/debian-installer"
-    cd $project_dir > /dev/null
-    for version in $versions; do
-        class="$branch-$version"
-        template="$debian_version/classes/$branch-template"
-        directory="$debian_version/classes/xivo-$class"
-        if [ $branch != 'dalek' ]; then
-            if [ ! -d $directory ]; then
-                echo $class does not exist
-                rsync -av $template/ $directory/
-                sed -i "s/xivo-fai-template/xivo-fai-$class/" $directory/postinst_script
-                git add $directory > /dev/null
-                manage_repo $directory
-            fi
+    cd "sources/debian-installer" > /dev/null
+    for version in $xivo_versions; do
+        template="$debian_version/classes/xivo-template"
+        directory="$debian_version/classes/xivo-$version"
+        if [ ! -d $directory ]; then
+            echo "xivo-$version does not exist, creating it"
+            rsync -av $template/ $directory/ > /dev/null
+            sed -i "s/xivo-fai-template/xivo-fai-$version/" $directory/postinst_script
+            git add $directory > /dev/null
+            commit "add archive xivo-$version"
         fi
     done
     cd - > /dev/null
 }
 
+reverse() {
+    echo $@ | tac -s' '
+}
+
 create_mirror_distribution_file() {
-    architectures="i386 source"
-    components="main non-free"
-    for version in $versions; do
+    distrib_config_file="sources/manage_xivo_archive/distributions"
+    sed s/__gpg_signing_key__/$gpg_signing_key/g distributions_head > $distrib_config_file
+    for version in $(reverse $xivo_versions); do
         cat >> $distrib_config_file << EOF
-Origin: proformatique.com
-Label: $debian_version-xivo-$branch-$version
-Suite: $debian_version-xivo-$branch-$version
-Codename: $debian_version-xivo-$branch-$version
-#Update: $debian_version-xivo-$branch $debian_version
-Architectures: $architectures
-Components: $components
-Description: Archive $debian_version-xivo-$branch-$version
+Origin: xivo.fr
+Label: xivo-$version
+Suite: xivo-$version
+Codename: xivo-$version
+#Update: xivo-five
+Architectures: i386 source
+Components: main
+Description: Archive xivo-$version
 SignWith: $gpg_signing_key
 
 EOF
     done
+    cd sources/manage_xivo_archive > /dev/null
+    commit "add archive mirror"
+    cd - > /dev/null
 }
 
-distrib_config_file="sources/manage_xivo_archive/distributions"
-rm $distrib_config_file
-
-for branch in dalek gallifrey skaro; do
-    if [ $branch = 'skaro' ]; then
-        versions="$skaro_versions"
-        debian_version='squeeze'
-        fai="pf-fai-xivo-1.2"
-    elif [ $branch = 'gallifrey' ]; then
-        versions="$gallifrey_versions"
-        debian_version='lenny'
-        fai="pf-fai-xivo-1.1"
-    elif [ $branch = 'dalek' ]; then
-        versions="$dalek_versions"
-        debian_version='etch'
-        fai="pf-fai-xivo-1.0"
-    fi
-    echo "Creating $branch data"
-    echo "Creating PXE configuration file"
-    create_pxe_config_file
-    echo "Creating PXE classes"
-    create_debian_installer_classes
-    echo "Creating mirror configuration file"
-    create_mirror_distribution_file
-done
-
-cat >> $distrib_config_file << EOF
-Origin: avencall.com
-Label: squeeze-dahdi-linux-2.6.0
-Suite: squeeze-dahdi-linux-2.6.0
-Codename: squeeze-dahdi-linux-2.6.0
-Architectures: i386 source
-Components: main
-Description: Archive squeeze-dahdi-linux-2.6.0
-SignWith: $gpg_signing_key
-EOF
-
-cd sources/manage_xivo_archive > /dev/null
-manage_repo "[evol] add new xivo mirror"
-cd - > /dev/null
+echo "Creating PXE configuration file"
+create_pxe_config_file
+echo "Creating PXE classes"
+create_debian_installer_classes
+echo "Creating mirror configuration file"
+create_mirror_distribution_file
