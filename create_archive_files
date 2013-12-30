@@ -36,7 +36,7 @@ create_debian_installer_classes() {
         if [ ! -d $directory ]; then
             echo "xivo-$version does not exist, creating it"
             rsync -av $template/ $directory/ > /dev/null
-            sed -i "s/xivo-fai-template/xivo-fai-$version/" $directory/postinst_script
+            sed -i "s/xivo-fai-template/xivo-fai-$version/;s/xivo-template/xivo-$version/" $directory/postinst_script
             git add $directory > /dev/null
             commit "add archive xivo-$version"
         fi
