@@ -24,7 +24,7 @@ label $label
     append initrd=fai-initrd-$debian_version rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=xivo --
 EOF
     done
-    commit "add archive $label"
+    commit "add new archive entry"
     cd - > /dev/null
 }
 
