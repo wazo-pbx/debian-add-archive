@@ -1,6 +1,6 @@
 #!/bin/bash
 repositories="debian-installer debian-pxelinux manage_xivo_archive"
-url="ssh://gitolite@git.xivo.fr/official"
+url="ssh://gitolite@git.xivo.io/official"
 if [ ! -d 'sources' ]; then
     mkdir sources
 fi

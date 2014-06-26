@@ -53,7 +53,7 @@ create_mirror_distribution_file() {
     sed s/__gpg_signing_key__/$gpg_signing_key/g distributions_head > $distrib_config_file
     for version in $(reverse $xivo_versions); do
         cat >> $distrib_config_file << EOF
-Origin: xivo.fr
+Origin: xivo.io
 Label: xivo-$version
 Suite: xivo-$version
 Codename: xivo-$version

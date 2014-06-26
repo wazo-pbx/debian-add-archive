@@ -12,4 +12,4 @@ xivo_versions=" \
 14.01 \
 13.25 \
 "
-mirror="http://mirror.xivo.fr"
+mirror="http://mirror.xivo.io"
