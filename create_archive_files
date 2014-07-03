@@ -58,7 +58,7 @@ Label: xivo-$version
 Suite: xivo-$version
 Codename: xivo-$version
 #Update: xivo-five
-Architectures: i386 source
+Architectures: i386 amd64 source
 Components: main
 Description: Archive xivo-$version
 SignWith: $gpg_signing_key
