@@ -20,8 +20,6 @@ get_repo() {
     fi
 }
 
-echo sources >> .git/info/exclude
-
 cd sources
 for repository in $repositories; do
     get_repo $repository
