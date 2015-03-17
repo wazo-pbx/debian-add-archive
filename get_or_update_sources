@@ -7,7 +7,10 @@ if [ ! -d sources ]; then
 fi
 
 get_repo() {
-    if [ ! -d $repository ]; then
+    if [ -d $repository ]; then
+        cd $repository && git pull
+        cd -
+    else
         git ls-remote $url/$repository &> /dev/null
         if [ $? -ne 0 ]; then
             "You cannot clone repository, abording"
@@ -15,9 +18,6 @@ get_repo() {
         fi
         echo "get $repository"
         git clone $url/$repository
-    else
-        cd $repository && git pull
-        cd -
     fi
 }
 
