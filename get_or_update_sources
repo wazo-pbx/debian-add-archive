@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 repositories="debian-installer debian-pxelinux manage_xivo_archive"
 url="ssh://gitolite@git.xivo.io/official"
 
@@ -11,12 +11,6 @@ get_repo() {
         cd $repository && git pull
         cd -
     else
-        git ls-remote $url/$repository &> /dev/null
-        if [ $? -ne 0 ]; then
-            "You cannot clone repository, abording"
-            exit 1
-        fi
-        echo "get $repository"
         git clone $url/$repository
     fi
 }
