@@ -1,6 +1,7 @@
 #!/bin/bash -e
-repositories="debian-installer debian-pxelinux manage_xivo_archive"
-url="ssh://gitolite@git.xivo.io/official"
+
+repositories="debian-installer debian-pxelinux debian-repo-archive"
+url="ssh://git@github.com/xivo-pbx"
 
 if [ ! -d sources ]; then
     mkdir sources

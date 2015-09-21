@@ -49,7 +49,7 @@ reverse() {
 }
 
 create_mirror_distribution_file() {
-    distrib_config_file="sources/manage_xivo_archive/distributions"
+    distrib_config_file="sources/debian-repo-archive/distributions"
     sed s/__gpg_signing_key__/$gpg_signing_key/g distributions_head > $distrib_config_file
     for version in $(reverse $xivo_versions); do
         cat >> $distrib_config_file << EOF
@@ -65,7 +65,7 @@ SignWith: $gpg_signing_key
 
 EOF
     done
-    cd sources/manage_xivo_archive > /dev/null
+    cd sources/debian-repo-archive > /dev/null
     commit "add archive mirror"
     cd - > /dev/null
 }
