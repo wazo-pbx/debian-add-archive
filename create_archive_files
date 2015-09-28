@@ -11,9 +11,8 @@ commit() {
 }
 
 create_pxe_config_file() {
-    cd "sources/debian-pxelinux" > /dev/null
-    local archive_config_file="archive/archive-xivo.cfg"
-    echo "menu rows 8" > $archive_config_file
+    local archive_config_file="sources/debian-pxelinux/archive/archive-xivo.cfg"
+    cat pxe.head > $archive_config_file
     for version in $xivo_versions; do
         label="xivo-$version"
         class=$label
@@ -28,6 +27,8 @@ label $label-i386
     append initrd=fai-initrd-$debian_version rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=xivo --
 EOF
     done
+    cat pxe.tail >> $archive_config_file
+    cd "sources/debian-pxelinux" > /dev/null
     commit "add new archive entry"
     cd - > /dev/null
 }
@@ -54,7 +55,7 @@ reverse() {
 
 create_mirror_distribution_file() {
     distrib_config_file="sources/debian-repo-archive/distributions"
-    sed s/__gpg_signing_key__/$gpg_signing_key/g distributions_head > $distrib_config_file
+    sed s/__gpg_signing_key__/$gpg_signing_key/g distributions.head > $distrib_config_file
     for version in $(reverse $xivo_versions); do
         cat >> $distrib_config_file << EOF
 Origin: xivo.io
