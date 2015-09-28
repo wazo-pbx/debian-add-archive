@@ -18,8 +18,12 @@ create_pxe_config_file() {
         label="xivo-$version"
         class=$label
         cat >> $archive_config_file << EOF
-label $label
-    menu label $label
+label $label-amd64
+    menu label $label (amd64)
+    kernel fai-linux-$debian_version-64
+    append initrd=fai-initrd-$debian_version-64 rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=xivo --
+label $label-i386
+    menu label $label (i386)
     kernel fai-linux-$debian_version
     append initrd=fai-initrd-$debian_version rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=xivo --
 EOF
