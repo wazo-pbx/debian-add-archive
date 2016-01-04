@@ -2,7 +2,7 @@
 . xivo_versions_data
 
 gpg_signing_key=DFB0B268
-debian_version=wheezy
+debian_version=jessie
 
 commit() {
     local message=$1
