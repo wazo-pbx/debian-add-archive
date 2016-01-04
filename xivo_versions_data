@@ -1,7 +1,3 @@
 xivo_versions=" \
-15.19 \
-15.18 \
-15.17 \
-15.16 \
 "
 mirror="http://mirror.xivo.io"

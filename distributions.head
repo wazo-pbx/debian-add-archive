@@ -1050,3 +1050,43 @@ Components: main
 Description: Archive xivo-15.15
 SignWith: __gpg_signing_key__
 
+Origin: xivo.io
+Label: xivo-15.16
+Suite: xivo-15.16
+Codename: xivo-15.16
+#Update: xivo-five
+Architectures: i386 amd64 source
+Components: main
+Description: Archive xivo-15.16
+SignWith: __gpg_signing_key__
+
+Origin: xivo.io
+Label: xivo-15.17
+Suite: xivo-15.17
+Codename: xivo-15.17
+#Update: xivo-five
+Architectures: i386 amd64 source
+Components: main
+Description: Archive xivo-15.17
+SignWith: __gpg_signing_key__
+
+Origin: xivo.io
+Label: xivo-15.18
+Suite: xivo-15.18
+Codename: xivo-15.18
+#Update: xivo-five
+Architectures: i386 amd64 source
+Components: main
+Description: Archive xivo-15.18
+SignWith: __gpg_signing_key__
+
+Origin: xivo.io
+Label: xivo-15.19
+Suite: xivo-15.19
+Codename: xivo-15.19
+#Update: xivo-five
+Architectures: i386 amd64 source
+Components: main
+Description: Archive xivo-15.19
+SignWith: __gpg_signing_key__
+
