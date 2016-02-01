@@ -1,4 +1,5 @@
 xivo_versions=" \
+16.01 \
 15.20 \
 "
 mirror="http://mirror.xivo.io"
