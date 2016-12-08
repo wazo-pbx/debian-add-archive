@@ -1,7 +1,7 @@
 #!/bin/bash
 . xivo_versions_data
 
-gpg_signing_key=DFB0B268
+gpg_signing_key=527FBC6A
 debian_version=jessie
 
 commit() {
@@ -14,21 +14,21 @@ create_pxe_config_file() {
     local archive_config_file="sources/debian-pxelinux/archive/archive-xivo.cfg"
     cat pxe.head > $archive_config_file
     for version in $xivo_versions; do
-        label="xivo-$version"
+        label="wazo-$version"
         class=$label
         cat >> $archive_config_file << EOF
 label $label-amd64
     menu label $label (amd64)
     kernel fai-linux-$debian_version-64
-    append initrd=fai-initrd-$debian_version-64 rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=xivo --
+    append initrd=fai-initrd-$debian_version-64 rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=wazo --
 label $label-amd64-raid
     menu label $label (amd64) with software RAID
     kernel fai-linux-$debian_version-64
-    append initrd=fai-initrd-$debian_version-64 rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class,raid hostname=xivo --
+    append initrd=fai-initrd-$debian_version-64 rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class,raid hostname=wazo --
 label $label-i386
     menu label $label (i386)
     kernel fai-linux-$debian_version
-    append initrd=fai-initrd-$debian_version rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=xivo --
+    append initrd=fai-initrd-$debian_version rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=wazo --
 EOF
     done
     cat pxe.tail >> $archive_config_file
@@ -40,14 +40,14 @@ EOF
 create_debian_installer_classes() {
     cd "sources/debian-installer" > /dev/null
     for version in $xivo_versions; do
-        template="$debian_version/classes/xivo-template"
-        directory="$debian_version/classes/xivo-$version"
+        template="$debian_version/classes/wazo-template"
+        directory="$debian_version/classes/wazo-$version"
         if [ ! -d $directory ]; then
-            echo "xivo-$version does not exist, creating it"
+            echo "wazo-$version does not exist, creating it"
             rsync -av $template/ $directory/ > /dev/null
-            sed -i "s/xivo-template/xivo-$version/" $directory/postinst_script
+            sed -i "s/wazo-template/wazo-$version/" $directory/postinst_script
             git add $directory > /dev/null
-            commit "add archive xivo-$version"
+            commit "add archive wazo-$version"
         fi
     done
     cd - > /dev/null
@@ -59,17 +59,15 @@ reverse() {
 
 create_mirror_distribution_file() {
     distrib_config_file="sources/debian-repo-archive/distributions"
-    sed s/__gpg_signing_key__/$gpg_signing_key/g distributions.head > $distrib_config_file
+    cat distributions.head > $distrib_config_file
     for version in $(reverse $xivo_versions); do
         cat >> $distrib_config_file << EOF
-Origin: xivo.io
-Label: xivo-$version
-Suite: xivo-$version
-Codename: xivo-$version
-#Update: xivo-five
+Origin: Wazo
+Codename: wazo-$version
+#Update: phoenix
 Architectures: i386 amd64 source
 Components: main
-Description: Archive xivo-$version
+Description: Archive wazo-$version
 SignWith: $gpg_signing_key
 
 EOF
