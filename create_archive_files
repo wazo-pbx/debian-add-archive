@@ -2,7 +2,7 @@
 . xivo_versions_data
 
 gpg_signing_key=527FBC6A
-debian_version=jessie
+debian_version=stretch
 
 commit() {
     local message=$1
@@ -19,16 +19,16 @@ create_pxe_config_file() {
         cat >> $archive_config_file << EOF
 label $label-amd64
     menu label $label (amd64)
-    kernel fai-linux-$debian_version-64
-    append initrd=fai-initrd-$debian_version-64 rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=wazo --
+    kernel debian-installer-$debian_version/amd64/linux
+    append initrd=debian-installer-$debian_version/amd64/initrd.gz rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=wazo --
 label $label-amd64-raid
     menu label $label (amd64) with software RAID
-    kernel fai-linux-$debian_version-64
-    append initrd=fai-initrd-$debian_version-64 rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class,raid hostname=wazo --
+    kernel debian-installer-$debian_version/amd64/linux
+    append initrd=debian-installer-$debian_version/amd64/initrd.gz rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class,raid hostname=wazo --
 label $label-i386
     menu label $label (i386)
-    kernel fai-linux-$debian_version
-    append initrd=fai-initrd-$debian_version rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=wazo --
+    kernel debian-installer-$debian_version/i386/linux
+    append initrd=debian-installer-$debian_version/i386/initrd.gz rw auto=true url=$mirror priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,$class hostname=wazo --
 EOF
     done
     cat pxe.tail >> $archive_config_file
@@ -64,7 +64,7 @@ create_mirror_distribution_file() {
         cat >> $distrib_config_file << EOF
 Origin: Wazo
 Codename: wazo-$version
-#Update: phoenix
+#Update: phoenix-stretch
 Architectures: i386 amd64 source
 Components: main
 Description: Archive wazo-$version

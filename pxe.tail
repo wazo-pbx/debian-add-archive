@@ -1,3 +1,219 @@
+label wazo-17.17-amd64
+    menu label wazo-17.17 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.17 hostname=wazo --
+label wazo-17.17-amd64-raid
+    menu label wazo-17.17 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.17,raid hostname=wazo --
+label wazo-17.17-i386
+    menu label wazo-17.17 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.17 hostname=wazo --
+label wazo-17.16-amd64
+    menu label wazo-17.16 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.16 hostname=wazo --
+label wazo-17.16-amd64-raid
+    menu label wazo-17.16 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.16,raid hostname=wazo --
+label wazo-17.16-i386
+    menu label wazo-17.16 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.16 hostname=wazo --
+label wazo-17.15-amd64
+    menu label wazo-17.15 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.15 hostname=wazo --
+label wazo-17.15-amd64-raid
+    menu label wazo-17.15 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.15,raid hostname=wazo --
+label wazo-17.15-i386
+    menu label wazo-17.15 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.15 hostname=wazo --
+label wazo-17.14-amd64
+    menu label wazo-17.14 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.14 hostname=wazo --
+label wazo-17.14-amd64-raid
+    menu label wazo-17.14 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.14,raid hostname=wazo --
+label wazo-17.14-i386
+    menu label wazo-17.14 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.14 hostname=wazo --
+label wazo-17.13-amd64
+    menu label wazo-17.13 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.13 hostname=wazo --
+label wazo-17.13-amd64-raid
+    menu label wazo-17.13 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.13,raid hostname=wazo --
+label wazo-17.13-i386
+    menu label wazo-17.13 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.13 hostname=wazo --
+label wazo-17.12-amd64
+    menu label wazo-17.12 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.12 hostname=wazo --
+label wazo-17.12-amd64-raid
+    menu label wazo-17.12 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.12,raid hostname=wazo --
+label wazo-17.12-i386
+    menu label wazo-17.12 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.12 hostname=wazo --
+label wazo-17.11-amd64
+    menu label wazo-17.11 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.11 hostname=wazo --
+label wazo-17.11-amd64-raid
+    menu label wazo-17.11 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.11,raid hostname=wazo --
+label wazo-17.11-i386
+    menu label wazo-17.11 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.11 hostname=wazo --
+label wazo-17.10-amd64
+    menu label wazo-17.10 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.10 hostname=wazo --
+label wazo-17.10-amd64-raid
+    menu label wazo-17.10 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.10,raid hostname=wazo --
+label wazo-17.10-i386
+    menu label wazo-17.10 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.10 hostname=wazo --
+label wazo-17.09-amd64
+    menu label wazo-17.09 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.09 hostname=wazo --
+label wazo-17.09-amd64-raid
+    menu label wazo-17.09 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.09,raid hostname=wazo --
+label wazo-17.09-i386
+    menu label wazo-17.09 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.09 hostname=wazo --
+label wazo-17.08-amd64
+    menu label wazo-17.08 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.08 hostname=wazo --
+label wazo-17.08-amd64-raid
+    menu label wazo-17.08 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.08,raid hostname=wazo --
+label wazo-17.08-i386
+    menu label wazo-17.08 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.08 hostname=wazo --
+label wazo-17.07-amd64
+    menu label wazo-17.07 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.07 hostname=wazo --
+label wazo-17.07-amd64-raid
+    menu label wazo-17.07 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.07,raid hostname=wazo --
+label wazo-17.07-i386
+    menu label wazo-17.07 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.07 hostname=wazo --
+label wazo-17.06-amd64
+    menu label wazo-17.06 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.06 hostname=wazo --
+label wazo-17.06-amd64-raid
+    menu label wazo-17.06 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.06,raid hostname=wazo --
+label wazo-17.06-i386
+    menu label wazo-17.06 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.06 hostname=wazo --
+label wazo-17.05-amd64
+    menu label wazo-17.05 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.05 hostname=wazo --
+label wazo-17.05-amd64-raid
+    menu label wazo-17.05 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.05,raid hostname=wazo --
+label wazo-17.05-i386
+    menu label wazo-17.05 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.05 hostname=wazo --
+label wazo-17.04-amd64
+    menu label wazo-17.04 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.04 hostname=wazo --
+label wazo-17.04-amd64-raid
+    menu label wazo-17.04 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.04,raid hostname=wazo --
+label wazo-17.04-i386
+    menu label wazo-17.04 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.04 hostname=wazo --
+label wazo-17.03-amd64
+    menu label wazo-17.03 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.03 hostname=wazo --
+label wazo-17.03-amd64-raid
+    menu label wazo-17.03 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.03,raid hostname=wazo --
+label wazo-17.03-i386
+    menu label wazo-17.03 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.03 hostname=wazo --
+label wazo-17.02-amd64
+    menu label wazo-17.02 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.02 hostname=wazo --
+label wazo-17.02-amd64-raid
+    menu label wazo-17.02 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.02,raid hostname=wazo --
+label wazo-17.02-i386
+    menu label wazo-17.02 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.02 hostname=wazo --
+label wazo-17.01-amd64
+    menu label wazo-17.01 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.01 hostname=wazo --
+label wazo-17.01-amd64-raid
+    menu label wazo-17.01 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.01,raid hostname=wazo --
+label wazo-17.01-i386
+    menu label wazo-17.01 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-17.01 hostname=wazo --
+label wazo-16.16-amd64
+    menu label wazo-16.16 (amd64)
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-16.16 hostname=wazo --
+label wazo-16.16-amd64-raid
+    menu label wazo-16.16 (amd64) with software RAID
+    kernel fai-linux-jessie-64
+    append initrd=fai-initrd-jessie-64 rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-16.16,raid hostname=wazo --
+label wazo-16.16-i386
+    menu label wazo-16.16 (i386)
+    kernel fai-linux-jessie
+    append initrd=fai-initrd-jessie rw auto=true url=http://mirror.wazo.community priority=critical locale=en_US.UTF-8 interface=auto netcfg/dhcp_timeout=60 classes=debug,wazo-16.16 hostname=wazo --
 label xivo-16.13-amd64
     menu label xivo-16.13 (amd64)
     kernel fai-linux-jessie-64
