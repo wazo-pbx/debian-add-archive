@@ -1,22 +1,14 @@
 #!/bin/bash -e
 
-repositories="debian-installer debian-pxelinux debian-repo-archive"
-url="ssh://git@github.com/wazo-pbx"
-
-if [ ! -d sources ]; then
-    mkdir sources
-fi
-
 get_repo() {
-    if [ -d $repository ]; then
-        cd $repository && git pull
+    if [ -d debian-repo-archive ]; then
+        cd debian-repo-archive && git pull
         cd -
     else
-        git clone $url/$repository
+        git clone ssh://git@github.com/wazo-pbx/debian-repo-archive
     fi
 }
 
+mkdir -p sources
 cd sources
-for repository in $repositories; do
-    get_repo $repository
-done
+get_repo
