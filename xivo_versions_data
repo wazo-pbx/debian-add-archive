@@ -1,3 +1,4 @@
 xivo_versions=" \
+19.03 \
 "
 mirror="http://mirror.wazo.community"
