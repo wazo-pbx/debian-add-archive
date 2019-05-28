@@ -16,7 +16,7 @@ create_mirror_distribution_file() {
         cat >> $distrib_config_file << EOF
 Origin: Wazo
 Codename: wazo-$version
-#Update: wazo-rc-stretch
+#Update: - wazo-rc-stretch
 Architectures: i386 amd64 source
 Components: main
 Description: Archive wazo-$version
