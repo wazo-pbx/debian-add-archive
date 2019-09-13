@@ -3,7 +3,6 @@
 . xivo_versions_data
 
 gpg_signing_key=527FBC6A
-debian_version=stretch
 
 reverse() {
     echo $@ | tac -s' '
@@ -16,7 +15,7 @@ create_mirror_distribution_file() {
         cat >> $distrib_config_file << EOF
 Origin: Wazo
 Codename: wazo-$version
-#Update: - wazo-rc-stretch
+#Update: - wazo-rc-buster
 Architectures: i386 amd64 source
 Components: main
 Description: Archive wazo-$version
