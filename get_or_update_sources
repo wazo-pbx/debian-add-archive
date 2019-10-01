@@ -5,7 +5,7 @@ get_repo() {
         cd debian-repo-archive && git pull
         cd -
     else
-        git clone ssh://git@github.com/wazo-pbx/debian-repo-archive
+        git clone ssh://git@github.com/wazo-platform/debian-repo-archive
     fi
 }
 
