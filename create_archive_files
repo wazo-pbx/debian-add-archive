@@ -11,6 +11,7 @@ reverse() {
 create_mirror_distribution_file() {
     distrib_config_file="sources/debian-repo-archive/distributions"
     cat distributions.head > $distrib_config_file
+    echo >> $distrib_config_file
     for version in $(reverse $xivo_versions); do
         cat >> $distrib_config_file << EOF
 Origin: Wazo
